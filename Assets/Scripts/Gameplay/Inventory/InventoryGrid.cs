@@ -1,51 +1,17 @@
 using UnityEngine;
 
-public enum RotationState
-{
-    None = 0,
-    Right90 = 1,
-    Right180 = 2,
-    Right270 = 3
-}
-
-public class GridCell
-{
-    public Vector2Int Position;
-
-    public bool IsOccupied;
-
-    public ItemInstance OccupiedItem;
-
-    
-}
-
-public class ItemInstance
-{
-    public ItemDefinition Definition;
-
-    public Vector2Int GridPosition;
-
-    public RotationState Rotation;
-
-    public Vector2Int[] GetCurrentShape()
-    {
-        return ShapeUtility.GetRotatedShape(
-            Definition.Shape,
-            Rotation);
-    }
-}
-
 public class InventoryGrid
 {
-    private GridCell[,] _cells;
+    private readonly int _width;
 
-    public int Width { get; }
-    public int Height { get; }
+    private readonly int _height;
+
+    private readonly GridCell[,] _cells;
 
     public InventoryGrid(int width, int height)
     {
-        Width = width;
-        Height = height;
+        _width = width;
+        _height = height;
 
         _cells = new GridCell[width, height];
 
@@ -54,62 +20,59 @@ public class InventoryGrid
 
     private void Initialize()
     {
-        for (int x = 0; x < Width; x++)
+        for (int x = 0; x < _width; x++)
         {
-            for (int y = 0; y < Height; y++)
+            for (int y = 0; y < _height; y++)
             {
-                _cells[x, y] = new GridCell
-                {
-                    Position = new Vector2Int(x, y)
-                };
+                _cells[x, y] = new GridCell();
             }
         }
     }
 
-    private bool IsInsideBounds(Vector2Int pos)
+    public bool IsInsideBounds(Vector2Int pos)
     {
         return pos.x >= 0 &&
-           pos.y >= 0 &&
-           pos.x < Width &&
-           pos.y < Height;
+               pos.y >= 0 &&
+               pos.x < _width &&
+               pos.y < _height;
     }
-    
-    public bool CanPlaceItem(
-    ItemInstance item,
-    Vector2Int origin)
+
+    public bool IsOccupied(Vector2Int pos)
+    {
+        return _cells[pos.x, pos.y].IsOccupied;
+    }
+
+    public void PlaceItem(
+        ItemInstance item,
+        Vector2Int origin)
     {
         var shape = item.GetCurrentShape();
 
+        item.OccupiedCells.Clear();
+
         foreach (var offset in shape)
         {
-            Vector2Int cellPos = origin + offset;
+            Vector2Int pos = origin + offset;
 
-            if (!IsInsideBounds(cellPos))
-                return false;
+            _cells[pos.x, pos.y].IsOccupied = true;
 
-            if (_cells[cellPos.x, cellPos.y].IsOccupied)
-                return false;
+            _cells[pos.x, pos.y].OccupiedItem = item;
+
+            item.OccupiedCells.Add(pos);
         }
 
-        return true;
+        item.Origin = origin;
     }
 
-    
-
-    public void PlaceItem(
-    ItemInstance item,
-    Vector2Int origin)
+    public void RemoveItem(ItemInstance item)
     {
-    var shape = item.GetCurrentShape();
+        foreach (var pos in item.OccupiedCells)
+        {
+            _cells[pos.x, pos.y].IsOccupied = false;
 
-    foreach(var offset in shape)
-    {
-        Vector2Int pos = origin + offset;
+            _cells[pos.x, pos.y].OccupiedItem = null;
+        }
 
-        _cells[pos.x, pos.y].IsOccupied = true;
-        _cells[pos.x, pos.y].OccupiedItem = item;
-    }
-
-    item.GridPosition = origin;
+        item.OccupiedCells.Clear();
     }
 }

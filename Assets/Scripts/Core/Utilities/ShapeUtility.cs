@@ -2,76 +2,29 @@ using UnityEngine;
 
 public static class ShapeUtility
 {
-    public static Vector2Int[] GetRotatedShape(
-        Vector2Int[] original,
-        RotationState rotation)
+    public static Vector2Int[] Normalize(
+        Vector2Int[] shape)
     {
-        Vector2Int[] result =
-            new Vector2Int[original.Length];
+        int minX = int.MaxValue;
+        int minY = int.MaxValue;
 
-        for(int i = 0; i < original.Length; i++)
+        foreach (var cell in shape)
         {
-            result[i] =
-                Rotate(original[i], rotation);
+            minX = Mathf.Min(minX, cell.x);
+            minY = Mathf.Min(minY, cell.y);
         }
 
-        return Normalize(result);
-    }
+        Vector2Int[] result =
+            new Vector2Int[shape.Length];
 
-    private static Vector2Int Rotate(
-        Vector2Int point,
-        RotationState rotation)
-    {
-        return rotation switch
+        for (int i = 0; i < shape.Length; i++)
         {
-            RotationState.None =>
-                point,
-
-            RotationState.Right90 =>
+            result[i] =
                 new Vector2Int(
-                    -point.y,
-                    point.x),
+                    shape[i].x - minX,
+                    shape[i].y - minY);
+        }
 
-            RotationState.Right180 =>
-                new Vector2Int(
-                    -point.x,
-                    -point.y),
-
-            RotationState.Right270 =>
-                new Vector2Int(
-                    point.y,
-                    -point.x),
-
-            _ => point
-        };
+        return result;
     }
-
-    public static Vector2Int[] Normalize(
-    Vector2Int[] shape)
-{
-    int minX = int.MaxValue;
-    int minY = int.MaxValue;
-
-    foreach(var p in shape)
-    {
-        if(p.x < minX)
-            minX = p.x;
-
-        if(p.y < minY)
-            minY = p.y;
-    }
-
-    Vector2Int offset =
-        new Vector2Int(-minX, -minY);
-
-    Vector2Int[] normalized =
-        new Vector2Int[shape.Length];
-
-    for(int i = 0; i < shape.Length; i++)
-    {
-        normalized[i] = shape[i] + offset;
-    }
-
-    return normalized;
-}
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d72296834ead45fabbf9ff46b453e43, type: 3}
+  m_Name: CraftingDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingDatabase
+  Recipes:
+  - {fileID: 11400000, guid: 3abd82ff9215440f8b94b248d4593fd4, type: 2}
+  - {fileID: 11400000, guid: 8b92a8b6a6d0b42439389128eade58a6, type: 2}
+  - {fileID: 11400000, guid: e6915c34b01b84a47b72d82be942e43f, type: 2}
+  - {fileID: 11400000, guid: 0be53256aa85744beb6126f55419fff8, type: 2}
+  - {fileID: 11400000, guid: de3ca3b2744534acf84f50a708ff7461, type: 2}
+  - {fileID: 11400000, guid: 0440a048b1aac4f1f9d490a939542c2d, type: 2}
+  - {fileID: 11400000, guid: 520720a86bbcf4f9f892d005a2021aee, type: 2}
+  - {fileID: 11400000, guid: 6ff3ca527017141b59e9352c8aca8cf1, type: 2}
+  - {fileID: 11400000, guid: af899699c0332406399d753bf132a5d8, type: 2}
+  - {fileID: 11400000, guid: 2e40f6cd054f84bf0a20d3a5165bda10, type: 2}

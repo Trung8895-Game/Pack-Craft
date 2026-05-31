@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryGrid
@@ -7,6 +8,13 @@ public class InventoryGrid
     private readonly int _height;
 
     private readonly GridCell[,] _cells;
+
+    private readonly List<ItemInstance> _items =
+    new();
+
+    public IReadOnlyList<ItemInstance> Items =>
+    _items;
+
 
     public InventoryGrid(int width, int height)
     {
@@ -62,6 +70,11 @@ public class InventoryGrid
         }
 
         item.Origin = origin;
+
+        if (!_items.Contains(item))
+        {
+            _items.Add(item);
+        }
     }
 
     public void RemoveItem(ItemInstance item)
@@ -74,5 +87,24 @@ public class InventoryGrid
         }
 
         item.OccupiedCells.Clear();
+        _items.Remove(item);
     }
+
+    public ItemInstance GetItemAt(
+    Vector2Int cell)
+{
+    foreach (var item in _items)
+    {
+        foreach (var occupiedCell in item.GetOccupiedCells())
+        {
+            if (occupiedCell == cell)
+            {
+                return item;
+            }
+        }
+    }
+
+    return null;
+}
+
 }

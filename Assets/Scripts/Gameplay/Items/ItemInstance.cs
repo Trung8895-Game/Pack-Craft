@@ -25,4 +25,18 @@ public class ItemInstance
         return _shapeCache.GetShape(
             Rotation);
     }
+
+    public List<Vector2Int> GetOccupiedCells()
+{
+    List<Vector2Int> result =
+        new();
+
+    foreach (var cell in GetCurrentShape())
+    {
+        result.Add(
+            Origin + cell);
+    }
+
+    return result;
+}
 }

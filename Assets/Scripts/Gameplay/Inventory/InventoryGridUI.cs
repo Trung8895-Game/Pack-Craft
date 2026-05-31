@@ -24,6 +24,9 @@ public class InventoryGridUI : MonoBehaviour
     private InventoryItemView itemPrefab;
 
     [SerializeField]
+    private InventoryItemView lootPrefab;
+
+    [SerializeField]
     private DragController dragController;
 
     private InventoryGrid _inventoryGrid;
@@ -72,13 +75,24 @@ public class InventoryGridUI : MonoBehaviour
         }
     }
 
-    public void SpawnItem(ItemInstance item)
+    public void SpawnItemView(ItemInstance item)
     {
         if (_itemViews.ContainsKey(item))
             return;
 
-        InventoryItemView view =
+        InventoryItemView view=null;
+
+        if(item.Definition.isLoot)
+        {
+            view =
+            Instantiate(lootPrefab, gridRoot);
+        }
+        else
+        {
+            view =
             Instantiate(itemPrefab, gridRoot);
+        }
+        
 
         view.Initialize(item, this, dragController);
 
@@ -86,7 +100,18 @@ public class InventoryGridUI : MonoBehaviour
 
         RefreshItemPosition(item);
     }
+    public void RemoveItemView(
+    ItemInstance item)
+{
+    if (_itemViews.TryGetValue(
+        item,
+        out InventoryItemView view))
+    {
+        Destroy(view.gameObject);
 
+        _itemViews.Remove(item);
+    }
+}
     public void RefreshItemPosition(ItemInstance item)
     {
         if (!_itemViews.TryGetValue(item, out var view))
@@ -185,6 +210,22 @@ public class InventoryGridUI : MonoBehaviour
                         .SetNormal();
                 }
             }
+        }
+    }
+
+    public void RefreshAll()
+    {
+        RefreshGridVisual();
+
+        RefreshAllItemViews();
+    }
+
+    private void RefreshAllItemViews()
+    {
+        foreach (var itemView
+            in _itemViews.Values)
+        {
+            itemView.RefreshVisual();
         }
     }
 }

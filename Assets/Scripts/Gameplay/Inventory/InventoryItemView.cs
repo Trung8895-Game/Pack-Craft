@@ -9,7 +9,7 @@ public class InventoryItemView : MonoBehaviour,
     IEndDragHandler
 {
     [Header("References")]
-    public RectTransform rectTransform;
+    public RectTransform _rectTransform;
 
     [SerializeField]
     private Image icon;
@@ -43,10 +43,10 @@ public class InventoryItemView : MonoBehaviour,
 
         RefreshVisual();
     }
-    private void OnEnable()
+   /* private void OnEnable()
     {
         LeanTouch.OnFingerTap += HandleTap;
-    }
+    }*/
     public void RefreshVisual()
     {
         RefreshSize();
@@ -78,7 +78,7 @@ public class InventoryItemView : MonoBehaviour,
         float pixelHeight =
             height * _gridUI.CellSize;
 
-        rectTransform.sizeDelta =
+        _rectTransform.sizeDelta =
             new Vector2(
                 pixelWidth,
                 pixelHeight);
@@ -88,13 +88,15 @@ public class InventoryItemView : MonoBehaviour,
                 pixelWidth,
                 pixelHeight);
     }
-    private void HandleTap(LeanFinger finger)
+   /* private void HandleTap(LeanFinger finger)
     {
         RotateItem();
+        
     }
+    */
     public void RotateItem()
     {
-        if (_dragController == null)
+        if (_dragController == null||!_item.Definition.Rotatable)
             return;
 
         _dragController.RotateDraggingItem(_item, this);
@@ -157,14 +159,14 @@ public class InventoryItemView : MonoBehaviour,
 
     public void SetPosition(Vector2 position)
     {
-        rectTransform.anchoredPosition =
+        _rectTransform.anchoredPosition =
             position;
     }
 
     public void SetDragPosition(
         Vector2 screenPosition)
     {
-        rectTransform.position =
+        _rectTransform.position =
             screenPosition;
     }
 

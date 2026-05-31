@@ -7,6 +7,9 @@ public class DragController : MonoBehaviour
     [SerializeField]
     private InventoryGridUI gridUI;
 
+    [SerializeField]
+    private InventoryCraftController craftController;
+
     private PlacementValidator _validator;
 
     private InventoryItemView _draggingView;
@@ -83,26 +86,44 @@ public class DragController : MonoBehaviour
 
         if (valid)
         {
+
             gridUI.InventoryGrid
                 .PlaceItem(
                     _draggingItem,
                     gridPos);
 
+            //craftController.CheckCrafting();
+
             Vector2 targetPosition =
             gridUI.GridToLocalPosition(
                 gridPos);
 
-            _draggingView.rectTransform
+            _draggingView._rectTransform
                 .DOAnchorPos(
                     targetPosition,
                     0.15f);
         }
         else
         {
+            ItemInstance targetItem = gridUI.InventoryGrid.GetItemAt(gridPos);
+            if (targetItem != null && targetItem != _draggingItem)
+            {
+            bool crafted =
+            craftController.TryCraft(
+                _draggingItem,
+                targetItem);
+
+            if (crafted)
+            {
+                return;
+            }
+            }
             gridUI.InventoryGrid
                 .PlaceItem(
                     _draggingItem,
                     _originalPosition);
+
+            //craftController.CheckCrafting();
         }
 
         gridUI.RefreshItemPosition(

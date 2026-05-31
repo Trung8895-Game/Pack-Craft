@@ -45,17 +45,30 @@ public class GameBootstrap : MonoBehaviour
 
     private void Start()
     {
-        ItemInstance item =
+        ItemInstance item1 =
             new ItemInstance
             {
-                Definition = axe,
+                Definition = stone,
                 Origin = new Vector2Int(0, 0)
             };
-        item.Initialize();
+        item1.Initialize();
         inventoryUI.InventoryGrid
-            .PlaceItem(item, item.Origin);
+            .PlaceItem(item1, item1.Origin);
 
-        inventoryUI.SpawnItem(item);
+        inventoryUI.SpawnItemView(item1);
+        inventoryUI.RefreshGridVisual();
+
+        ItemInstance item2 =
+            new ItemInstance
+            {
+                Definition = wood,
+                Origin = new Vector2Int(5, 5)
+            };
+        item2.Initialize();
+        inventoryUI.InventoryGrid
+            .PlaceItem(item2, item2.Origin);
+
+        inventoryUI.SpawnItemView(item2);
         inventoryUI.RefreshGridVisual();
         //inventoryUI.ShowPlacementPreview(item, item.Origin, true);
     }

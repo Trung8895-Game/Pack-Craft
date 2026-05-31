@@ -17,3 +17,4 @@ MonoBehaviour:
   Shape:
   - {x: 1, y: 1}
   Rotatable: 0
+  isLoot: 1

@@ -10,4 +10,6 @@ public class ItemDefinition : ScriptableObject
     public Vector2Int[] Shape;
 
     public bool Rotatable;
+
+    public bool isLoot;
 }

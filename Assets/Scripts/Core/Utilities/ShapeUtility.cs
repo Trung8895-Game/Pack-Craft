@@ -19,10 +19,7 @@ public static class ShapeUtility
 
         for (int i = 0; i < shape.Length; i++)
         {
-            result[i] =
-                new Vector2Int(
-                    shape[i].x - minX,
-                    shape[i].y - minY);
+            result[i] = new Vector2Int(shape[i].x - minX,shape[i].y - minY);
         }
 
         return result;

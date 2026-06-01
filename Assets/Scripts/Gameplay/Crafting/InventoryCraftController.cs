@@ -14,59 +14,54 @@ public class InventoryCraftController
 
     private void Awake()
     {
-        _craftingService =
-            new CraftingService(
-                database);
+        _craftingService =new CraftingService(database);
     }
 
-    public bool TryCraft(
-    ItemInstance source,
-    ItemInstance target)
+    public bool TryCraft(ItemInstance source,ItemInstance target)
 {
-    ItemDefinition result =
-        _craftingService.TryCraft(
-            source,
-            target);
+    ItemDefinition result =_craftingService.TryCraft(source,target);
 
     if (result == null)
     {
         return false;
     }
 
-    CraftItems(
-        source,
-        target,
-        result);
+    CraftItems(source,target,result);
 
     return true;
 }
-    private void CraftItems(
-    ItemInstance source,
-    ItemInstance target,
-    ItemDefinition result)
+    private void CraftItems(ItemInstance source,ItemInstance target,ItemDefinition result)
 {
-    Vector2Int spawnPosition =
-        target.Origin;
+    Vector2Int spawnPosition = target.Origin;
 
-    gridUI.InventoryGrid
-        .RemoveItem(source);
+    gridUI.InventoryGrid.RemoveItem(source);
 
-    gridUI.InventoryGrid
-        .RemoveItem(target);
+    gridUI.InventoryGrid.RemoveItem(target);
 
     gridUI.RemoveItemView(source);
     gridUI.RemoveItemView(target);
 
-    ItemInstance crafted =
-        CraftResultSpawner
-            .Spawn(result);
+    ItemInstance crafted =CraftResultSpawner.Spawn(result);
 
-    gridUI.InventoryGrid
-        .PlaceItem(
-            crafted,
-            spawnPosition);
+    gridUI.InventoryGrid.PlaceItem(crafted,spawnPosition);
 
     gridUI.SpawnItemView(crafted);
-        gridUI.RefreshAll();
+    gridUI.RefreshAll();
+
+    GoalEventBus.OnItemCrafted?.Invoke(result);
 }
+    public List<ItemDefinition> listItemDefinitions(ItemDefinition itemResult)
+    {
+        List<ItemDefinition> itemDefinitions= new List<ItemDefinition>();
+        foreach(var recipe in database.Recipes)
+        {
+            if(recipe.Result==itemResult)
+            {
+                itemDefinitions.Add(recipe.ItemA);
+                itemDefinitions.Add(recipe.ItemB);
+                break;
+            }
+        }
+        return itemDefinitions;
+    }
 }

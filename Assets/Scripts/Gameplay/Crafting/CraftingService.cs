@@ -4,15 +4,12 @@ public class CraftingService
 {
     private readonly CraftingDatabase _database;
 
-    public CraftingService(
-        CraftingDatabase database)
+    public CraftingService(CraftingDatabase database)
     {
         _database = database;
     }
 
-    public ItemDefinition TryCraft(
-    ItemInstance itemA,
-    ItemInstance itemB)
+    public ItemDefinition TryCraft(ItemInstance itemA, ItemInstance itemB)
 {
     if (_database == null)
         return null;
@@ -22,11 +19,7 @@ public class CraftingService
 
     foreach (var recipe in _database.Recipes)
     {
-        bool match =
-            IsRecipeMatch(
-                recipe,
-                itemA.Definition,
-                itemB.Definition);
+        bool match = IsRecipeMatch(recipe,itemA.Definition,itemB.Definition);
 
         if (match)
         {
@@ -37,18 +30,9 @@ public class CraftingService
     return null;
 }
 
-    private bool IsRecipeMatch(
-        RecipeDefinition recipe,
-        ItemDefinition a,
-        ItemDefinition b)
+    private bool IsRecipeMatch(RecipeDefinition recipe, ItemDefinition a, ItemDefinition b)
     {
         return
-            (recipe.ItemA == a &&
-             recipe.ItemB == b)
-
-            ||
-
-            (recipe.ItemA == b &&
-             recipe.ItemB == a);
+            (recipe.ItemA == a && recipe.ItemB == b)||(recipe.ItemA == b &&recipe.ItemB == a);
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c10b1022b394f468bb312f791d4b66, type: 3}
+  m_Name: LevelGoal 4
+  m_EditorClassIdentifier: Assembly-CSharp::LevelGoalDefinition
+  Goals:
+  - {fileID: 11400000, guid: 7a6b971fff573465c9d2267724d83a71, type: 2}
+  - {fileID: 11400000, guid: 252505d7180af4179a6497d807e906dc, type: 2}
+  - {fileID: 11400000, guid: 2af676cadeb20480fb40deed00efd999, type: 2}
+  - {fileID: 11400000, guid: d72eddb77ae034765be9d295e6dc1fa6, type: 2}
+  - {fileID: 11400000, guid: 47430e9ed3ed04217a1a580673effedf, type: 2}
+  - {fileID: 11400000, guid: b074804a68e66411a864854254cf62fb, type: 2}
+  - {fileID: 11400000, guid: aa65bbc12abb74f5faf932c7c00a8d0a, type: 2}

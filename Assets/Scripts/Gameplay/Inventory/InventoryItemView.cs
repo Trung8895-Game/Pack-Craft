@@ -25,10 +25,7 @@ public class InventoryItemView : MonoBehaviour,
 
     private DragController _dragController;
 
-    public void Initialize(
-        ItemInstance item,
-        InventoryGridUI gridUI,
-        DragController dragController)
+    public void Initialize(ItemInstance item, InventoryGridUI gridUI, DragController dragController)
     {
         _item = item;
 
@@ -36,8 +33,7 @@ public class InventoryItemView : MonoBehaviour,
 
         _dragController = dragController;
 
-        icon.sprite =
-            item.Definition.Icon;
+        icon.sprite = item.Definition.Icon;
 
         icon.preserveAspect = true;
 
@@ -56,37 +52,21 @@ public class InventoryItemView : MonoBehaviour,
 
     private void RefreshSize()
     {
-        Vector2Int[] shape =
-            _item.GetCurrentShape();
+        Vector2Int[] shape = _item.GetCurrentShape();
 
-        GetShapeBounds(
-            shape,
-            out int minX,
-            out int maxX,
-            out int minY,
-            out int maxY);
+        GetShapeBounds( shape, out int minX, out int maxX, out int minY, out int maxY);
 
-        int width =
-            (maxX - minX) + 1;
+        int width = (maxX - minX) + 1;
 
-        int height =
-            (maxY - minY) + 1;
+        int height = (maxY - minY) + 1;
 
-        float pixelWidth =
-            width * _gridUI.CellSize;
+        float pixelWidth = width * _gridUI.CellSize;
 
-        float pixelHeight =
-            height * _gridUI.CellSize;
+        float pixelHeight = height * _gridUI.CellSize;
 
-        _rectTransform.sizeDelta =
-            new Vector2(
-                pixelWidth,
-                pixelHeight);
+        _rectTransform.sizeDelta = new Vector2( pixelWidth, pixelHeight);
 
-        iconRoot.sizeDelta =
-            new Vector2(
-                pixelWidth,
-                pixelHeight);
+        iconRoot.sizeDelta = new Vector2( pixelWidth, pixelHeight);
     }
    /* private void HandleTap(LeanFinger finger)
     {
@@ -95,22 +75,19 @@ public class InventoryItemView : MonoBehaviour,
     }
     */
     public void RotateItem()
+    {bool success =
+        _gridUI.InventoryGrid.TryRotateItem(_item);
+
+    if (!success)
     {
-        if (_dragController == null||!_item.Definition.Rotatable)
-            return;
-
-        _dragController.RotateDraggingItem(_item, this);
-
-        _gridUI.InventoryGrid
-           .RemoveItem(_item);
-
-        _item.Initialize();
-        _gridUI.InventoryGrid
-            .PlaceItem(_item, _item.Origin);
-
-       
-        _gridUI.RefreshGridVisual();
+        Debug.Log("Rotation blocked");
+        return;
     }
+
+        _gridUI.RefreshAll();
+    }
+
+    
 
     private void RefreshRotation()
     {
@@ -124,16 +101,10 @@ public class InventoryItemView : MonoBehaviour,
                 _ => 0
             };
 
-        iconRoot.localEulerAngles =
-            new Vector3(0, 0, zRotation);
+        iconRoot.localEulerAngles = new Vector3(0, 0, zRotation);
     }
 
-    private void GetShapeBounds(
-        Vector2Int[] shape,
-        out int minX,
-        out int maxX,
-        out int minY,
-        out int maxY)
+    private void GetShapeBounds( Vector2Int[] shape, out int minX, out int maxX, out int minY, out int maxY)
     {
         minX = int.MaxValue;
         maxX = int.MinValue;
@@ -159,37 +130,27 @@ public class InventoryItemView : MonoBehaviour,
 
     public void SetPosition(Vector2 position)
     {
-        _rectTransform.anchoredPosition =
-            position;
+        _rectTransform.anchoredPosition = position;
     }
 
-    public void SetDragPosition(
-        Vector2 screenPosition)
+    public void SetDragPosition( Vector2 screenPosition)
     {
-        _rectTransform.position =
-            screenPosition;
+        _rectTransform.position = screenPosition;
     }
 
-    public void OnBeginDrag(
-    PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        _dragController.BeginDrag(
-            this,
-            eventData);
+        _dragController.BeginDrag( this, eventData);
         
     }
 
-    public void OnDrag(
-    PointerEventData eventData)
+    public void OnDrag( PointerEventData eventData)
     {
-        _dragController.UpdateDrag(
-            eventData);
+        _dragController.UpdateDrag(eventData);
     }
 
-    public void OnEndDrag(
-    PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)
     {
-        _dragController.EndDrag(
-            eventData);
+        _dragController.EndDrag(eventData);
     }
 }

@@ -33,8 +33,7 @@ public class InventoryGridUI : MonoBehaviour
 
     private InventoryCellUI[,] _cellViews;
 
-    private readonly Dictionary<ItemInstance,
-        InventoryItemView> _itemViews = new();
+    private readonly Dictionary<ItemInstance,InventoryItemView> _itemViews = new();
 
     public InventoryGrid InventoryGrid => _inventoryGrid;
 
@@ -42,33 +41,26 @@ public class InventoryGridUI : MonoBehaviour
 
     private void Awake()
     {
-        _inventoryGrid =
-            new InventoryGrid(width, height);
+        _inventoryGrid = new InventoryGrid(width, height);
 
         GenerateGridVisual();
     }
 
     private void GenerateGridVisual()
     {
-        _cellViews =
-            new InventoryCellUI[width, height];
+        _cellViews = new InventoryCellUI[width, height];
 
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                InventoryCellUI cell =
-                    Instantiate(cellPrefab, gridRoot);
+                InventoryCellUI cell = Instantiate(cellPrefab, gridRoot);
 
-                RectTransform rect =
-                    cell.GetComponent<RectTransform>();
+                RectTransform rect = cell.GetComponent<RectTransform>();
 
-                rect.sizeDelta =
-                    Vector2.one * cellSize;
+                rect.sizeDelta = Vector2.one * cellSize;
 
-                rect.anchoredPosition =
-                    GridToLocalPosition(
-                        new Vector2Int(x, y));
+                rect.anchoredPosition = GridToLocalPosition(new Vector2Int(x, y));
 
                 _cellViews[x, y] = cell;
             }
@@ -103,9 +95,7 @@ public class InventoryGridUI : MonoBehaviour
     public void RemoveItemView(
     ItemInstance item)
 {
-    if (_itemViews.TryGetValue(
-        item,
-        out InventoryItemView view))
+    if (_itemViews.TryGetValue(item, out InventoryItemView view))
     {
         Destroy(view.gameObject);
 
@@ -117,30 +107,23 @@ public class InventoryGridUI : MonoBehaviour
         if (!_itemViews.TryGetValue(item, out var view))
             return;
 
-        Vector2 pos =
-            GridToLocalPosition(item.Origin);
+        Vector2 pos = GridToLocalPosition(item.Origin);
 
         view.SetPosition(pos);
 
         view.RefreshVisual();
     }
 
-    public Vector2 GridToLocalPosition(
-        Vector2Int gridPos)
+    public Vector2 GridToLocalPosition(Vector2Int gridPos)
     {
-        return new Vector2(
-            gridPos.x * cellSize,
-            -gridPos.y * cellSize);
+        return new Vector2(gridPos.x * cellSize,-gridPos.y * cellSize);
     }
 
-    public Vector2Int LocalToGridPosition(
-        Vector2 localPosition)
+    public Vector2Int LocalToGridPosition(Vector2 localPosition)
     {
-        int x =
-            Mathf.FloorToInt(localPosition.x / cellSize);
+        int x =Mathf.FloorToInt(localPosition.x / cellSize);
 
-        int y =
-            Mathf.FloorToInt(-localPosition.y / cellSize);
+        int y =Mathf.FloorToInt(-localPosition.y / cellSize);
 
         return new Vector2Int(x, y);
     }
@@ -159,34 +142,26 @@ public class InventoryGridUI : MonoBehaviour
         RefreshGridVisual();
     }
 
-    public void ShowPlacementPreview(
-        ItemInstance item,
-        Vector2Int origin,
-        bool valid)
+    public void ShowPlacementPreview(ItemInstance item, Vector2Int origin, bool valid)
     {
         ClearHighlights();
 
-        var shape =
-            item.GetCurrentShape();
+        var shape = item.GetCurrentShape();
 
         foreach (var offset in shape)
         {
-            Vector2Int pos =
-                origin + offset;
+            Vector2Int pos = origin + offset;
 
-            if (!_inventoryGrid
-                .IsInsideBounds(pos))
+            if (!_inventoryGrid.IsInsideBounds(pos))
                 continue;
 
             if (valid)
             {
-                _cellViews[pos.x, pos.y]
-                    .SetValid();
+                _cellViews[pos.x, pos.y].SetValid();
             }
             else
             {
-                _cellViews[pos.x, pos.y]
-                    .SetInvalid();
+                _cellViews[pos.x, pos.y].SetInvalid();
             }
         }
     }
@@ -196,18 +171,15 @@ public class InventoryGridUI : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                Vector2Int pos =
-                    new Vector2Int(x, y);
+                Vector2Int pos = new Vector2Int(x, y);
 
                 if (_inventoryGrid.IsOccupied(pos))
                 {
-                    _cellViews[x, y]
-                        .SetOccupied();
+                    _cellViews[x, y].SetOccupied();
                 }
                 else
                 {
-                    _cellViews[x, y]
-                        .SetNormal();
+                    _cellViews[x, y].SetNormal();
                 }
             }
         }
@@ -222,8 +194,7 @@ public class InventoryGridUI : MonoBehaviour
 
     private void RefreshAllItemViews()
     {
-        foreach (var itemView
-            in _itemViews.Values)
+        foreach (var itemView in _itemViews.Values)
         {
             itemView.RefreshVisual();
         }

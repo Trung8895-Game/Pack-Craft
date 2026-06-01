@@ -9,11 +9,9 @@ public class InventoryGrid
 
     private readonly GridCell[,] _cells;
 
-    private readonly List<ItemInstance> _items =
-    new();
+    private readonly List<ItemInstance> _items = new();
 
-    public IReadOnlyList<ItemInstance> Items =>
-    _items;
+    public IReadOnlyList<ItemInstance> Items => _items;
 
 
     public InventoryGrid(int width, int height)
@@ -39,10 +37,7 @@ public class InventoryGrid
 
     public bool IsInsideBounds(Vector2Int pos)
     {
-        return pos.x >= 0 &&
-               pos.y >= 0 &&
-               pos.x < _width &&
-               pos.y < _height;
+        return pos.x >= 0 && pos.y >= 0 && pos.x < _width && pos.y < _height;
     }
 
     public bool IsOccupied(Vector2Int pos)
@@ -50,9 +45,7 @@ public class InventoryGrid
         return _cells[pos.x, pos.y].IsOccupied;
     }
 
-    public void PlaceItem(
-        ItemInstance item,
-        Vector2Int origin)
+    public void PlaceItem(ItemInstance item,Vector2Int origin)
     {
         var shape = item.GetCurrentShape();
 
@@ -78,33 +71,108 @@ public class InventoryGrid
     }
 
     public void RemoveItem(ItemInstance item)
+{
+    foreach (var pos in item.OccupiedCells)
     {
-        foreach (var pos in item.OccupiedCells)
-        {
-            _cells[pos.x, pos.y].IsOccupied = false;
+        _cells[pos.x, pos.y].IsOccupied = false;
 
-            _cells[pos.x, pos.y].OccupiedItem = null;
-        }
-
-        item.OccupiedCells.Clear();
-        _items.Remove(item);
+        _cells[pos.x, pos.y].OccupiedItem = null;
     }
 
-    public ItemInstance GetItemAt(
-    Vector2Int cell)
+    item.OccupiedCells.Clear();
+
+    _items.Remove(item);
+}
+
+    public ItemInstance GetItemAt(Vector2Int cell)
 {
-    foreach (var item in _items)
+    if (!IsInsideBounds(cell))
     {
-        foreach (var occupiedCell in item.GetOccupiedCells())
+        return null;
+    }
+
+    return _cells[cell.x, cell.y].OccupiedItem;
+}
+public bool CanPlaceItem(
+    ItemInstance item,Vector2Int origin)
+{
+    foreach (var offset in item.GetCurrentShape())
+    {
+        Vector2Int pos = origin + offset;
+
+        if (!IsInsideBounds(pos))
         {
-            if (occupiedCell == cell)
+            return false;
+        }
+
+        ItemInstance existing = GetItemAt(pos);
+
+        if (existing != null && existing != item)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+public bool CanRotateItem(ItemInstance item)
+{
+    RotationState oldRotation = item.Rotation;
+
+    item.Rotation = item.GetNextRotation();
+
+    bool result =CanPlaceItem(item,item.Origin);
+
+    item.Rotation = oldRotation;
+
+    return result;
+}
+public bool TryFindFreePosition(ItemInstance item,out Vector2Int position)
+{
+    for (int y = 0; y < _height; y++)
+    {
+        for (int x = 0; x < _width; x++)
+        {
+            Vector2Int candidate = new Vector2Int(x, y);
+
+            if (CanPlaceItem(item,candidate))
             {
-                return item;
+                position = candidate;
+                return true;
             }
         }
     }
 
-    return null;
+    position = Vector2Int.zero;
+    return false;
 }
 
+public bool TryRotateItem(ItemInstance item)
+{
+    if (!CanRotateItem(item))
+    {
+        return false;
+    }
+
+    ClearOccupiedCells(item);
+
+    item.Rotation = item.GetNextRotation();
+
+    PlaceItem(item,item.Origin);
+
+    return true;
+}
+
+private void ClearOccupiedCells(ItemInstance item)
+{
+    foreach (var pos in item.OccupiedCells)
+    {
+        _cells[pos.x, pos.y].IsOccupied = false;
+
+        _cells[pos.x, pos.y].OccupiedItem = null;
+    }
+
+    item.OccupiedCells.Clear();
+}
 }

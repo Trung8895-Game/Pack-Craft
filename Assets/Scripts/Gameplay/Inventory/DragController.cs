@@ -24,14 +24,10 @@ public class DragController : MonoBehaviour
 
     private void Start()
     {
-        _validator =
-            new PlacementValidator(
-                gridUI.InventoryGrid);
+        _validator = new PlacementValidator(gridUI.InventoryGrid);
     }
 
-    public void BeginDrag(
-        InventoryItemView view,
-        PointerEventData eventData)
+    public void BeginDrag(InventoryItemView view, PointerEventData eventData)
     {
         _eventData = eventData;
 
@@ -39,14 +35,13 @@ public class DragController : MonoBehaviour
 
         _draggingItem = view.Item;
 
-        _originalPosition =
-            _draggingItem.Origin;
+        _originalPosition = _draggingItem.Origin;
 
-        gridUI.InventoryGrid
-            .RemoveItem(_draggingItem);
+        view.transform.SetAsLastSibling();
 
-        _canvasGroup =
-            view.GetComponent<CanvasGroup>();
+        gridUI.InventoryGrid.RemoveItem(_draggingItem);
+
+        _canvasGroup = view.GetComponent<CanvasGroup>();
 
         if (_canvasGroup != null)
         {
@@ -62,74 +57,53 @@ public class DragController : MonoBehaviour
         if (_draggingView == null)
             return;
 
-        _draggingView.SetDragPosition(
-            eventData.position);
+        _draggingView.SetDragPosition(eventData.position);
 
         UpdatePreview(_draggingItem);
     }
 
-    public void EndDrag(
-        PointerEventData eventData)
+    public void EndDrag(PointerEventData eventData)
     {
-        if (_draggingItem == null|| _eventData == null)
+        if (_draggingItem == null || _eventData == null)
             return;
 
         _draggingItem.Initialize();
 
-        Vector2Int gridPos =
-    GetCurrentGridPosition();
+        Vector2Int gridPos = GetCurrentGridPosition();
 
-        bool valid =
-            _validator.CanPlace(
-                _draggingItem,
-                gridPos);
+        bool valid =_validator.CanPlace(_draggingItem,gridPos);
 
         if (valid)
         {
 
-            gridUI.InventoryGrid
-                .PlaceItem(
-                    _draggingItem,
-                    gridPos);
+            gridUI.InventoryGrid.PlaceItem(_draggingItem,gridPos);
 
             //craftController.CheckCrafting();
 
-            Vector2 targetPosition =
-            gridUI.GridToLocalPosition(
-                gridPos);
+            Vector2 targetPosition = gridUI.GridToLocalPosition(gridPos);
 
-            _draggingView._rectTransform
-                .DOAnchorPos(
-                    targetPosition,
-                    0.15f);
+            _draggingView._rectTransform.DOAnchorPos(targetPosition,0.15f);
         }
         else
         {
             ItemInstance targetItem = gridUI.InventoryGrid.GetItemAt(gridPos);
             if (targetItem != null && targetItem != _draggingItem)
             {
-            bool crafted =
-            craftController.TryCraft(
-                _draggingItem,
-                targetItem);
+                bool crafted =craftController.TryCraft(_draggingItem,targetItem);
 
-            if (crafted)
-            {
-                return;
+                if (crafted)
+                {
+                    return;
+                }
             }
-            }
-            gridUI.InventoryGrid
-                .PlaceItem(
-                    _draggingItem,
-                    _originalPosition);
+            gridUI.InventoryGrid.PlaceItem(_draggingItem,_originalPosition);
 
             //craftController.CheckCrafting();
         }
 
-        gridUI.RefreshItemPosition(
-            _draggingItem);
+        gridUI.RefreshItemPosition(_draggingItem);
 
-        
+
 
         gridUI.ClearHighlights();
 
@@ -150,44 +124,27 @@ public class DragController : MonoBehaviour
         if (_eventData == null)
             return;
 
-        Vector2Int gridPos =
-            GetCurrentGridPosition();
+        Vector2Int gridPos = GetCurrentGridPosition();
 
-        bool valid =
-            _validator.CanPlace(
-                item,
-                gridPos);
+        bool valid = _validator.CanPlace(item,gridPos);
 
-        gridUI.ShowPlacementPreview(
-            item,
-            gridPos,
-            valid);
+        gridUI.ShowPlacementPreview(item,gridPos,valid);
     }
 
     private Vector2Int GetCurrentGridPosition()
     {
-           
 
-        RectTransform gridRect =
-            gridUI.GetComponent<RectTransform>();
 
-            RectTransformUtility
-            .ScreenPointToLocalPointInRectangle(
-                gridRect,
-                _eventData.position,
-                _eventData.pressEventCamera,
-                out var localPos);
-        
-            
+        RectTransform gridRect = gridUI.GetComponent<RectTransform>();
 
-        return gridUI.LocalToGridPosition(
-            localPos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(gridRect,_eventData.position,_eventData.pressEventCamera,out var localPos);
+
+        return gridUI.LocalToGridPosition(localPos);
     }
 
     private void rotateDraggingItem(ItemInstance item, InventoryItemView view)
     {
-        RotationService.Rotate(
-    item);
+        RotationService.Rotate(item);
 
         view.RefreshVisual();
 

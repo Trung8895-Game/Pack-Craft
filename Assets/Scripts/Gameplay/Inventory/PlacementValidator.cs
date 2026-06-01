@@ -4,15 +4,12 @@ public class PlacementValidator
 {
     private readonly InventoryGrid _grid;
 
-    public PlacementValidator(
-        InventoryGrid grid)
+    public PlacementValidator(InventoryGrid grid)
     {
         _grid = grid;
     }
 
-    public bool CanPlace(
-        ItemInstance item,
-        Vector2Int origin)
+    public bool CanPlace(ItemInstance item,Vector2Int origin)
     {
         var shape = item.GetCurrentShape();
 

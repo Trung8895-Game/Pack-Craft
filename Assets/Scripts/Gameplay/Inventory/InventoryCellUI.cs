@@ -14,6 +14,9 @@ public class InventoryCellUI : MonoBehaviour
     private Color occupiedColor = Color.gray;
 
     [SerializeField]
+    private Color craftingColor = Color.yellow;
+
+    [SerializeField]
     private Color validColor = Color.green;
 
     [SerializeField]
@@ -38,5 +41,10 @@ public class InventoryCellUI : MonoBehaviour
     public void SetInvalid()
     {
         background.color = invalidColor;
+    }
+
+    public void SetCrafting()
+    {
+        background.color = craftingColor;
     }
 }

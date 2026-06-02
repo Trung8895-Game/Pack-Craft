@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 public class InventoryGridUI : MonoBehaviour
@@ -29,10 +30,12 @@ public class InventoryGridUI : MonoBehaviour
 
     [SerializeField]
     private DragController dragController;
+    [SerializeField]
+    private InventoryCraftController craftController;
 
     private InventoryGrid _inventoryGrid;
 
-    private InventoryCellUI[,] _cellViews;
+    public InventoryCellUI[,] _cellViews {set;get;}
 
     private readonly Dictionary<ItemInstance,InventoryItemView> _itemViews = new();
 
@@ -149,22 +152,48 @@ public class InventoryGridUI : MonoBehaviour
 
         var shape = item.GetCurrentShape();
 
-        foreach (var offset in shape)
+        foreach (var offset1 in shape)
         {
-            Vector2Int pos = origin + offset;
+            Vector2Int pos1 = origin + offset1;
 
-            if (!_inventoryGrid.IsInsideBounds(pos))
+            if (!_inventoryGrid.IsInsideBounds(pos1))
                 continue;
 
             if (valid)
             {
-                _cellViews[pos.x, pos.y].SetValid();
+                _cellViews[pos1.x, pos1.y].SetValid();
             }
             else
             {
-                _cellViews[pos.x, pos.y].SetInvalid();
+                Vector2Int gridPos = dragController.GetCurrentGridPosition();
+                ItemInstance targetItem = InventoryGrid.GetItemAt(gridPos);
+                var result= craftController._craftingService.TryCraft(item,targetItem);
+                        
+                    foreach (var occupiedCell in targetItem.OccupiedCells)
+                    {
+                               
+                        if(result!=null)
+                        {
+                       
+                            _cellViews[occupiedCell.x, occupiedCell.y].SetCrafting();
+                                
+                        }
+                        else
+                        {
+                            _cellViews[occupiedCell.x, occupiedCell.y].SetInvalid();
+                        }
+                            
+                            
+                    }
+                  
+                
             }
         }
+       
+
+        
+               
+                
     }
     public void RefreshGridVisual()
     {

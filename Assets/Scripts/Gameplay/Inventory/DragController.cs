@@ -135,7 +135,7 @@ public class DragController : MonoBehaviour
         gridUI.ShowPlacementPreview(item,gridPos,valid);
     }
 
-    private Vector2Int GetCurrentGridPosition()
+    public Vector2Int GetCurrentGridPosition()
     {
 
 

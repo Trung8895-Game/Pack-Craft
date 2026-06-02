@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LootItemButton
   button: {fileID: 3753007431742466713}
-  icon: {fileID: 3982102002886071016}
+  _icon: {fileID: 3982102002886071016}
   name: {fileID: 1433721400726997689}
 --- !u!1 &8513103681293650719
 GameObject:

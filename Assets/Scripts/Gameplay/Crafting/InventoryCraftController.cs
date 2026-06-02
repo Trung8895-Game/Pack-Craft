@@ -11,7 +11,7 @@ public class InventoryCraftController
     [SerializeField]
     private InventoryGridUI gridUI;
 
-    private CraftingService _craftingService;
+    public CraftingService _craftingService{set;get;}
 
     private async void Awake()
     {

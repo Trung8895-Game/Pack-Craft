@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Lean.Touch;
+using Cysharp.Threading.Tasks;
 
 public class InventoryItemView : MonoBehaviour,
     IBeginDragHandler,
@@ -12,7 +13,7 @@ public class InventoryItemView : MonoBehaviour,
     public RectTransform _rectTransform;
 
     [SerializeField]
-    private Image icon;
+    private Image _icon;
 
     [SerializeField]
     private RectTransform iconRoot;
@@ -25,7 +26,7 @@ public class InventoryItemView : MonoBehaviour,
 
     private DragController _dragController;
 
-    public void Initialize(ItemInstance item, InventoryGridUI gridUI, DragController dragController)
+    public async UniTask InitializeAsync(ItemInstance item, InventoryGridUI gridUI, DragController dragController)
     {
         _item = item;
 
@@ -33,9 +34,11 @@ public class InventoryItemView : MonoBehaviour,
 
         _dragController = dragController;
 
-        icon.sprite = item.Definition.Icon;
+        ItemDefinition itemDefinition = await AddressableManager.LoadAssetAsync<ItemDefinition>(item.Definition.AddressableKey);
 
-        icon.preserveAspect = true;
+        _icon.sprite = itemDefinition.Icon;
+
+        _icon.preserveAspect = true;
 
         RefreshVisual();
     }

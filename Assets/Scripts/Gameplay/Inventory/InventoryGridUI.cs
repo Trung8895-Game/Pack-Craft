@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class InventoryGridUI : MonoBehaviour
@@ -67,7 +68,7 @@ public class InventoryGridUI : MonoBehaviour
         }
     }
 
-    public void SpawnItemView(ItemInstance item)
+    public async UniTask SpawnItemViewAsync(ItemInstance item)
     {
         if (_itemViews.ContainsKey(item))
             return;
@@ -86,7 +87,7 @@ public class InventoryGridUI : MonoBehaviour
         }
         
 
-        view.Initialize(item, this, dragController);
+        await view.InitializeAsync(item, this, dragController);
 
         _itemViews.Add(item, view);
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 9b07cf75a99644443ae6730d9aad4a21
   m_currentHash:
     serializedVersion: 2
-    Hash: 3b68ca27b5219f11136e92ec61b2b6ab
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -131,6 +131,12 @@ MonoBehaviour:
     m_LabelNames:
     - Items
     - Loots
+    - Database
+    - Recipe
+    - Goal
+    - LevelGoal
+    - LevelDifinition
+    - Icon
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: c7790e02bc22349e286217baf9e31ca4, type: 2}

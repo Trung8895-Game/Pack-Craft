@@ -15,11 +15,47 @@ MonoBehaviour:
   m_GroupName: RemoteItems
   m_GUID: f24705709d3914c0ea79e12f55e2e9d7
   m_SerializeEntries:
+  - m_GUID: 0440a048b1aac4f1f9d490a939542c2d
+    m_Address: recipe_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08d5ec2d201ece949a5e428ba3ea0e63
+    m_Address: icon_sword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 098c04e31cd452146be0441cc6f3ae86
+    m_Address: icon_leather
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0be53256aa85744beb6126f55419fff8
+    m_Address: recipe_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fcc0402566234cb6ab4be56006b84a5
+    m_Address: goal_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 11139b204e16740268428b8ec11d7bf6
     m_Address: loot_gem
     m_ReadOnly: 0
     m_SerializedLabels:
     - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1200fd4c89ff9654483fdc0805358f5e
+    m_Address: icon_gem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 12f273e19ff2e4a01830c8153b2872bc
     m_Address: item_cape
@@ -33,11 +69,83 @@ MonoBehaviour:
     m_SerializedLabels:
     - Loots
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 252505d7180af4179a6497d807e906dc
+    m_Address: goal_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25e3cfb3f86a643f293223d3d14a91da
+    m_Address: crafting_database
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Database
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a2419ae0ab734a3f8bca4f3513e518f
+    m_Address: level_definition_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelDifinition
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2af676cadeb20480fb40deed00efd999
+    m_Address: goal_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e40f6cd054f84bf0a20d3a5165bda10
+    m_Address: recipe_10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 329522f0161a248d08ce4d244d7265f3
+    m_Address: level_goal_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelGoal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3abd82ff9215440f8b94b248d4593fd4
+    m_Address: recipe_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 409f9bc68f7fc3646b5386b3fb9e2a3a
+    m_Address: icon_crown
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 44a4987166c0b4d6394372eac17d0941
     m_Address: loot_gold
     m_ReadOnly: 0
     m_SerializedLabels:
     - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45ed798650dff4b47b71492718ff1851
+    m_Address: level_definition_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelDifinition
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47430e9ed3ed04217a1a580673effedf
+    m_Address: goal_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c8ac4dba96d44dddbd91297ab71c69f
+    m_Address: level_goal_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelGoal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4edd838a8cb4f4e2f8bd17fc55daab11
+    m_Address: level_goal_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelGoal
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4fb8ae0bd2f6f44e692022ad13901f2b
     m_Address: item_key
@@ -57,6 +165,54 @@ MonoBehaviour:
     m_SerializedLabels:
     - Items
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 520720a86bbcf4f9f892d005a2021aee
+    m_Address: recipe_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55485b69a9d5d4d64986d2b98919eb61
+    m_Address: level_goal_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelGoal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 583675a75bcb2a941ac555b9ccd513a9
+    m_Address: icon_stone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62f2546a95e9b407cb3da20d1ce2e02a
+    m_Address: goal_10
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63af52b5b92b10c4594f1085a1a0ab94
+    m_Address: icon_wood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68fba0368e8dc8842ad10756647eee14
+    m_Address: icon_key
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ff3ca527017141b59e9352c8aca8cf1
+    m_Address: recipe_8
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a6b971fff573465c9d2267724d83a71
+    m_Address: goal_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c43b514a016343b9b90a58e305618a8
     m_Address: item_shield
     m_ReadOnly: 0
@@ -69,11 +225,35 @@ MonoBehaviour:
     m_SerializedLabels:
     - Loots
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b92a8b6a6d0b42439389128eade58a6
+    m_Address: recipe_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e859c149e0cd814ea9acc8581953bd6
+    m_Address: icon_neck
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f908a0041a1aee4c8b02d9449ebd224
+    m_Address: icon_bow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 976225048ef7e4351be62a6976ec9f60
     m_Address: item_ring
     m_ReadOnly: 0
     m_SerializedLabels:
     - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 985522aa310769847adff8a288ac92ca
+    m_Address: icon_woodstick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 98b144c75b0884ccf8a860433da88306
     m_Address: item_arrow
@@ -81,11 +261,59 @@ MonoBehaviour:
     m_SerializedLabels:
     - Items
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98bdcbf4fc31e2340bc64a5db9ac98f8
+    m_Address: icon_arrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cbf6b7a680ec4ee6a4ee46140f425ef
+    m_Address: level_definition_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelDifinition
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d7e931295e92b8419dde467e5f709b8
+    m_Address: icon_cape
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f8ca05e9d3814e3dbffdeceda759fee
     m_Address: item_crown
     m_ReadOnly: 0
     m_SerializedLabels:
     - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0c46bd0ce09e0d479ad2962809f906f
+    m_Address: icon_gold
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7fa02c269abaed47bd3a49986381846
+    m_Address: icon_ring
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa65bbc12abb74f5faf932c7c00a8d0a
+    m_Address: goal_7
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af899699c0332406399d753bf132a5d8
+    m_Address: recipe_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b074804a68e66411a864854254cf62fb
+    m_Address: goal_6
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0a8e4c00117e4168a794d43ea4b3f55
     m_Address: loot_woodstick
@@ -99,11 +327,59 @@ MonoBehaviour:
     m_SerializedLabels:
     - Loots
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b45939f11371c524684402713923fe54
+    m_Address: icon_bone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b54b94da5cee5c046bf327246ac181e6
+    m_Address: icon_axe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b904b5adb6a1841f890c44721ade221d
     m_Address: loot_wood
     m_ReadOnly: 0
     m_SerializedLabels:
     - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c059fb548789f40438bf89838133822e
+    m_Address: level_definition_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelDifinition
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0b6e0d93f2d743018d2b359f903438c
+    m_Address: goal_9
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1952f240ce7e4961980d0d7798f22d9
+    m_Address: level_definition_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelDifinition
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5b61c0a9167141578d3082d3b8f3cfd
+    m_Address: level_database
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Database
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d72eddb77ae034765be9d295e6dc1fa6
+    m_Address: goal_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Goal
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9a5f5fbb7f32470bb7e465e611ad4c4
+    m_Address: level_goal_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LevelGoal
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db1b28157d03f4f73ab6d0da2494f8c1
     m_Address: loot_stone
@@ -111,11 +387,35 @@ MonoBehaviour:
     m_SerializedLabels:
     - Loots
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de3ca3b2744534acf84f50a708ff7461
+    m_Address: recipe_5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e2805cbb47d3d4500b23e13dfe7968d6
     m_Address: item_neck
     m_ReadOnly: 0
     m_SerializedLabels:
     - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6915c34b01b84a47b72d82be942e43f
+    m_Address: recipe_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Recipe
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e78313c7d47aeb845aee79d5bc8d26c5
+    m_Address: icon_silver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f270ae2815e437842921f264c20b5271
+    m_Address: icon_shield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Icon
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4ab5ebd7095f451f8d766a3d23a9a02
     m_Address: item_axe

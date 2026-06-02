@@ -21,7 +21,17 @@ public class InventoryCraftController
 {
     ItemDefinition result =_craftingService.TryCraft(source,target);
 
-    if (result == null)
+    ItemInstance itemResult =
+            new ItemInstance
+            {
+                Definition = result,
+                Origin = target.Origin
+            };
+        itemResult.Initialize();
+
+    bool canPlaceItem = gridUI.InventoryGrid.CanPlaceCraftedItem(target,itemResult,itemResult.Origin);
+
+    if (result == null|| !canPlaceItem)
     {
         return false;
     }

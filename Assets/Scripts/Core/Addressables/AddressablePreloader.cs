@@ -1,96 +1,126 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class AddressablePreloader : MonoBehaviour
 {
-   
-    public async UniTask Preload()
+   public static List<ItemDefinition> Items = new List<ItemDefinition>();
+   public static List<ItemDefinition> Loots = new List<ItemDefinition>();
+   public static CraftingDatabase craftingDatabase;
+   public static LevelDatabase levelDatabase;
+
+   private void Awake()
     {
-        await UniTask.WhenAll(
-            AddressableManager
+        DontDestroyOnLoad(this);
+    }
+    public static async UniTask Preload()
+    {
+        ItemDefinition Item;
+        Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.ArrowItem),
+                    AddressableKeys.ArrowItem);
+            Items.Add(Item);
 
-            AddressableManager
+        Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.AxeItem),
-
-            AddressableManager
-                .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.BoneLoot),
+                    AddressableKeys.AxeItem);
+            Items.Add(Item);
             
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.BowItem),
+                    AddressableKeys.BowItem);
+            Items.Add(Item);
 
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.CapeItem),
+                    AddressableKeys.CapeItem);
+            Items.Add(Item);
 
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.CrownItem),
+                    AddressableKeys.CrownItem);
+            Items.Add(Item);
             
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.GemLoot),
+                    AddressableKeys.KeyItem);
+            Items.Add(Item);
 
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.GoldLoot),
+                    AddressableKeys.NeckItem);
+            Items.Add(Item);
 
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.KeyItem),
+                    AddressableKeys.RingItem);
+            Items.Add(Item);
 
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.LeatherLoot),
+                    AddressableKeys.ShieldItem);
+            Items.Add(Item);
 
-            AddressableManager
+            Item = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.NeckItem),
+                    AddressableKeys.SwordItem);
+            Items.Add(Item);
 
-            AddressableManager
+
+
+             ItemDefinition Loot;
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.RingItem),
+                    AddressableKeys.BoneLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.ShieldItem),
+                    AddressableKeys.GoldLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.SilverLoot),
+                    AddressableKeys.GemLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.StoneLoot),
+                    AddressableKeys.LeatherLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.SwordItem),
+                    AddressableKeys.SilverLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.WoodLoot),
+                    AddressableKeys.StoneLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.WoodStickLoot),
+                    AddressableKeys.WoodLoot);
+            Loots.Add(Loot);
 
-            AddressableManager
+            Loot = await AddressableManager
+                .LoadAssetAsync<ItemDefinition>(
+                    AddressableKeys.WoodStickLoot);
+            Loots.Add(Loot);
+
+            
+            craftingDatabase= await AddressableManager
                 .LoadAssetAsync<CraftingDatabase>(
-                    AddressableKeys.CraftingDatabase),
+                    AddressableKeys.CraftingDatabase);
                     
-                    AddressableManager
+            levelDatabase = await AddressableManager
                 .LoadAssetAsync<LevelDatabase>(
-                    AddressableKeys.LevelDatabase)
-                    );
+                    AddressableKeys.LevelDatabase);
 
         Debug.Log(
             "Preload Complete");
+
     }
    
 }

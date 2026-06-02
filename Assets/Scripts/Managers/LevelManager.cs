@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class LevelManager
-    : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
 
     private LevelDatabase database;

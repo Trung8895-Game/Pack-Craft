@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScale : MonoBehaviour
 {
-    [SerializeField]
-    AddressablePreloader _preloader;
+    
     public GameObject Percents;
     private Vector3 LocalScale;
     public int velocity ;
@@ -52,7 +51,7 @@ public class LoadingScale : MonoBehaviour
         });
            
         }
-        await _preloader.Preload();
+        await AddressablePreloader.Preload();
          if(LocalScale.x==1f)
         {
             SceneManager.LoadScene("Main");

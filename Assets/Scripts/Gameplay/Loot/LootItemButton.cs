@@ -19,7 +19,7 @@ public class LootItemButton
 
     private LootSpawner _spawner;
 
-    public async UniTask Initialize(ItemDefinition definition, LootSpawner spawner)
+    public void Initialize(ItemDefinition definition, LootSpawner spawner)
     {
         _definition = definition;
         _spawner = spawner;

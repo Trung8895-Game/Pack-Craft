@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootScrollView
-    : MonoBehaviour
+public class LootScrollView : MonoBehaviour
 {
     [SerializeField]
     private LootSpawner spawner;
@@ -13,18 +12,18 @@ public class LootScrollView
     [SerializeField]
     private LootItemButton prefab;
 
-    [SerializeField]
-    private List<ItemDefinition> lootItems;
 
     private void Start()
     {
+        
         Build();
     }
 
     private void Build()
 {
-    foreach (var item in lootItems)
+    foreach (var item in AddressablePreloader.Loots)
     {
+        Debug.Log("item: "+item);
         LootItemButton button = Instantiate( prefab, content);
 
         button.Initialize(item,spawner);

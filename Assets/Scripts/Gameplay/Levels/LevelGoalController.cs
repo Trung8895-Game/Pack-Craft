@@ -1,8 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LevelGoalController
-    : MonoBehaviour
+public class LevelGoalController : MonoBehaviour
 {
 
     [SerializeField]

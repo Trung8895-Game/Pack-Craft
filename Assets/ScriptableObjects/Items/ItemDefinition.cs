@@ -7,6 +7,9 @@ public class ItemDefinition : ScriptableObject
 
     public Sprite Icon;
 
+    public string AddressableKey;
+    //public string IconAddressableKey;
+
     public Vector2Int[] Shape;
 
     public bool Rotatable;

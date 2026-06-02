@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508a354781a56478da0dc54a48d0a544, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: Assembly-CSharp::ItemDefinition
-  Id: 19
+  Id: Shield
   Icon: {fileID: 21300000, guid: f270ae2815e437842921f264c20b5271, type: 3}
+  AddressableKey: item_shield
   Shape:
   - {x: 0, y: 0}
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: 1, y: 1}
   Rotatable: 1
+  isLoot: 0

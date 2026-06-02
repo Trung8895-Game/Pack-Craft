@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class InventoryCraftController
@@ -40,7 +41,7 @@ public class InventoryCraftController
 
     return true;
 }
-    private void CraftItems(ItemInstance source,ItemInstance target,ItemDefinition result)
+    private async UniTask CraftItems(ItemInstance source,ItemInstance target,ItemDefinition result)
 {
     Vector2Int spawnPosition = target.Origin;
 
@@ -55,7 +56,7 @@ public class InventoryCraftController
 
     gridUI.InventoryGrid.PlaceItem(crafted,spawnPosition);
 
-    gridUI.SpawnItemView(crafted);
+    await gridUI.SpawnItemViewAsync(crafted);
     gridUI.RefreshAll();
 
     GoalEventBus.OnItemCrafted?.Invoke(result);

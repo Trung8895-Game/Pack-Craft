@@ -22,9 +22,15 @@ public class LevelGoalController
     {
 
         Debug.Log("Awake !!!!");
-        _tracker = new GoalTracker(levelManager.Database.Levels[GameProgress.CurrentLevel].Goals);
+       
     }
-    
+    private void Start()
+    {
+        Debug.Log("LevelDatabase: "+levelManager.Database);
+         _tracker = new GoalTracker(levelManager.Database.Levels[GameProgress.CurrentLevel].Goals);
+         levelGoalUI.currentProgress = _tracker.Progresses[0];
+         levelGoalUI.Build();
+    }
     private void OnEnable()
     {
         GoalEventBus.OnItemCrafted += OnItemCrafted;

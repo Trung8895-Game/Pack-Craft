@@ -20,22 +20,25 @@ public class LevelGoalUI : MonoBehaviour
 
     private void Start()
     {
-        currentProgress = controller.Tracker.Progresses[0];
-        Build();
+     
+        
     }
     private void Update()
     {
         Refresh();
     }
 
-     private void Build()
+     private void build()
     {
         entry = Instantiate(prefab,content);
         entry.Bind(currentProgress);
         tutorial.Bind(currentProgress);
         
     }
-
+    public void Build()
+    {
+        build();
+    }
     private void Refresh()
     {
         foreach (var entry in GetComponentsInChildren<GoalEntryUI>())

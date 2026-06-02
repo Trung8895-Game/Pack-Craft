@@ -805,6 +805,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2261560900598931284, guid: b2eed298cbfbe4a298bc0a7e3c3929c4, type: 3}
   lootPrefab: {fileID: 2261560900598931284, guid: aff2eec04ce6b4a0e8fa5a0c6acb6b6a, type: 3}
   dragController: {fileID: 498611840}
+  craftController: {fileID: 1064867097}
 --- !u!1 &1050859716
 GameObject:
   m_ObjectHideFlags: 0

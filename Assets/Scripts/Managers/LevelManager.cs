@@ -3,11 +3,14 @@ using UnityEngine;
 public class LevelManager
     : MonoBehaviour
 {
-    [SerializeField]
+
     private LevelDatabase database;
     public LevelDatabase Database => database;
 
-
+    private async void Awake()
+    {
+        database = await AddressableManager.LoadAssetAsync<LevelDatabase>(AddressableKeys.LevelDatabase);
+    }
     public void LoadNextLevel()
     {
         int current = GameProgress.CurrentLevel;

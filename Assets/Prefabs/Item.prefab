@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemView
   _rectTransform: {fileID: 778445164568087735}
-  icon: {fileID: 4340278791193932180}
+  _icon: {fileID: 4340278791193932180}
   iconRoot: {fileID: 778445164568087735}
 --- !u!225 &3005144658670750677
 CanvasGroup:

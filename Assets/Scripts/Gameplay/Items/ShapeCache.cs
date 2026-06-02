@@ -28,6 +28,8 @@ public class ShapeCache
 
     private Vector2Int[] BuildShape(RotationState rotation)
     {
+        Debug.Log("ItemDefinition: "+ _definition);
+
         Vector2Int[] original =_definition.Shape;
 
         Vector2Int[] rotated = new Vector2Int[original.Length];

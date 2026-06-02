@@ -11,7 +11,7 @@ public class ItemInstance
 
     public List<Vector2Int> OccupiedCells = new();
 
-    private ShapeCache _shapeCache;
+    public ShapeCache _shapeCache;
 
     public void Initialize()
     {

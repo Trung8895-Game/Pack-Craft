@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryCraftController
     : MonoBehaviour
 {
-    [SerializeField]
+    
     private CraftingDatabase database;
 
     [SerializeField]
@@ -13,26 +13,32 @@ public class InventoryCraftController
 
     private CraftingService _craftingService;
 
-    private void Awake()
+    private async void Awake()
     {
+         database = await AddressableManager.LoadAssetAsync<CraftingDatabase>(AddressableKeys.CraftingDatabase);
         _craftingService =new CraftingService(database);
     }
 
     public bool TryCraft(ItemInstance source,ItemInstance target)
 {
     ItemDefinition result =_craftingService.TryCraft(source,target);
-
+    if(result == null)
+        {
+            return false;
+        }
     ItemInstance itemResult =
             new ItemInstance
             {
                 Definition = result,
                 Origin = target.Origin
             };
+
+        Debug.Log("resultDefinition: " + result);
         itemResult.Initialize();
 
     bool canPlaceItem = gridUI.InventoryGrid.CanPlaceCraftedItem(target,itemResult,itemResult.Origin);
 
-    if (result == null|| !canPlaceItem)
+    if (!canPlaceItem)
     {
         return false;
     }
@@ -66,7 +72,7 @@ public class InventoryCraftController
         List<ItemDefinition> itemDefinitions= new List<ItemDefinition>();
         foreach(var recipe in database.Recipes)
         {
-            if(recipe.Result==itemResult)
+            if(recipe.Result.Id==itemResult.Id)
             {
                 itemDefinitions.Add(recipe.ItemA);
                 itemDefinitions.Add(recipe.ItemB);

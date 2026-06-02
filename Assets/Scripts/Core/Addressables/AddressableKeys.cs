@@ -53,5 +53,12 @@ public static class AddressableKeys
 
     public const string WoodStickLoot =
         "loot_woodstick";
+    
+     public const string CraftingDatabase =
+        "crafting_database";
+
+    public const string LevelDatabase =
+        "level_database";
+    
 
 }

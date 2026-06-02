@@ -1,14 +1,11 @@
 using Cysharp.Threading.Tasks;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class AddressablePreloader : MonoBehaviour
 {
-    private async void Start()
-    {
-        await Preload();
-    }
-
-    private async UniTask Preload()
+   
+    public async UniTask Preload()
     {
         await UniTask.WhenAll(
             AddressableManager
@@ -81,9 +78,19 @@ public class AddressablePreloader : MonoBehaviour
 
             AddressableManager
                 .LoadAssetAsync<ItemDefinition>(
-                    AddressableKeys.WoodStickLoot));
+                    AddressableKeys.WoodStickLoot),
+
+            AddressableManager
+                .LoadAssetAsync<CraftingDatabase>(
+                    AddressableKeys.CraftingDatabase),
+                    
+                    AddressableManager
+                .LoadAssetAsync<LevelDatabase>(
+                    AddressableKeys.LevelDatabase)
+                    );
 
         Debug.Log(
             "Preload Complete");
     }
+   
 }

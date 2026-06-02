@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScale : MonoBehaviour
 {
+    [SerializeField]
+    AddressablePreloader _preloader;
     public GameObject Percents;
     private Vector3 LocalScale;
     public int velocity ;
     // Start is called before the first frame update
-    void Start()
+    private async void Awake()
     {
         LocalScale = Percents.transform.localScale;
-        RunLoading();
+        await RunLoading();
+        
     }
 
     // Update is called once per frame
@@ -25,8 +28,10 @@ public class LoadingScale : MonoBehaviour
 
     public async UniTask RunLoading()
     {
-        string[] labels={"Items","Loots"};
+         await CatalogUpdater.CheckForUpdates();
+        string[] labels={"Items","Loots","Database","Recipe","Goal","LevelGoal","LevelDifinition","Icon"};
         long totalSize= await DownloadManager.GetTotalDownloadSize(labels);
+        Debug.Log("totalSize: " + totalSize);
         if(totalSize==0)
         {
             await UniTask.Delay(2000);
@@ -35,9 +40,9 @@ public class LoadingScale : MonoBehaviour
         }
         else
         {
-            await CatalogUpdater.CheckForUpdates();
+           
         
-        await DownloadManager.DownloadLabels(labels,
+            await DownloadManager.DownloadLabels(labels,
         progress =>
         {
             Debug.Log("Progress: " + progress);
@@ -47,6 +52,7 @@ public class LoadingScale : MonoBehaviour
         });
            
         }
+        await _preloader.Preload();
          if(LocalScale.x==1f)
         {
             SceneManager.LoadScene("Main");

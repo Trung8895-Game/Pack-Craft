@@ -55,7 +55,7 @@ public class GameBootstrap : MonoBehaviour
         inventoryUI.InventoryGrid
             .PlaceItem(item1, item1.Origin);
 
-        inventoryUI.SpawnItemView(item1);
+        inventoryUI.SpawnItemViewAsync(item1);
         inventoryUI.RefreshGridVisual();
 
         ItemInstance item2 =
@@ -68,7 +68,7 @@ public class GameBootstrap : MonoBehaviour
         inventoryUI.InventoryGrid
             .PlaceItem(item2, item2.Origin);
 
-        inventoryUI.SpawnItemView(item2);
+        inventoryUI.SpawnItemViewAsync(item2);
         inventoryUI.RefreshGridVisual();
         //inventoryUI.ShowPlacementPreview(item, item.Origin, true);
     }

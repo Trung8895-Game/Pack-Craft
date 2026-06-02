@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: RemoteItems
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: RemoteItems
+  m_GUID: f24705709d3914c0ea79e12f55e2e9d7
+  m_SerializeEntries:
+  - m_GUID: 11139b204e16740268428b8ec11d7bf6
+    m_Address: loot_gem
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12f273e19ff2e4a01830c8153b2872bc
+    m_Address: item_cape
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ad357cce31d24898afe9087b4af00c8
+    m_Address: loot_silver
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44a4987166c0b4d6394372eac17d0941
+    m_Address: loot_gold
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fb8ae0bd2f6f44e692022ad13901f2b
+    m_Address: item_key
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50ec258171c9f4585ba315240192365a
+    m_Address: item_sword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 510bab74bac6e4e84a159a9fd5717997
+    m_Address: item_bow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c43b514a016343b9b90a58e305618a8
+    m_Address: item_shield
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a1e14e9ae2294a1a93a31ded375442e
+    m_Address: loot_leather
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 976225048ef7e4351be62a6976ec9f60
+    m_Address: item_ring
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98b144c75b0884ccf8a860433da88306
+    m_Address: item_arrow
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f8ca05e9d3814e3dbffdeceda759fee
+    m_Address: item_crown
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0a8e4c00117e4168a794d43ea4b3f55
+    m_Address: loot_woodstick
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b190eca6cc02b4e64a9e1af4c043f550
+    m_Address: loot_bone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b904b5adb6a1841f890c44721ade221d
+    m_Address: loot_wood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db1b28157d03f4f73ab6d0da2494f8c1
+    m_Address: loot_stone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loots
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2805cbb47d3d4500b23e13dfe7968d6
+    m_Address: item_neck
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4ab5ebd7095f451f8d766a3d23a9a02
+    m_Address: item_axe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Items
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 83fa3cc3e662d45319b95cb4b2c005ac, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: dfe051847054940d8bda26b6c609b957, type: 2}
+    - {fileID: 11400000, guid: 1499e188f86064dcab6aa6d519db826c, type: 2}

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class LootSpawner : MonoBehaviour
@@ -5,9 +6,18 @@ public class LootSpawner : MonoBehaviour
     [SerializeField]
     private InventoryGridUI gridUI;
 
-    public bool SpawnLoot(ItemDefinition definition)
+    public async UniTask<bool> SpawnLootAsync(string itemKey)
     {
-        ItemInstance item = new ItemInstance
+        ItemDefinition definition =
+            await AddressableManager
+            .LoadAssetAsync<ItemDefinition>(
+                itemKey);
+
+        if (definition == null)
+        {
+            return false;
+        }
+            ItemInstance item = new ItemInstance
             {
                 Definition = definition,
                 Rotation = RotationState.None
@@ -26,7 +36,7 @@ public class LootSpawner : MonoBehaviour
 
         gridUI.InventoryGrid.PlaceItem(item,position);
 
-        gridUI.SpawnItemView(item);
+        await gridUI.SpawnItemViewAsync(item);
         gridUI.RefreshAll();
         return true;
     }

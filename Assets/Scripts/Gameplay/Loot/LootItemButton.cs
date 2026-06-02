@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class LootItemButton
     private Button button;
 
     [SerializeField]
-    private Image icon;
+    private Image _icon;
 
     [SerializeField]
     private TextMeshProUGUI name;
@@ -18,19 +19,19 @@ public class LootItemButton
 
     private LootSpawner _spawner;
 
-    public void Initialize(ItemDefinition definition, LootSpawner spawner)
+    public async UniTask Initialize(ItemDefinition definition, LootSpawner spawner)
     {
         _definition = definition;
         _spawner = spawner;
 
-        icon.sprite = definition.Icon;
+        _icon.sprite = definition.Icon;
         name.text= definition.name;
 
         button.onClick.AddListener(OnClicked);
     }
 
-    private void OnClicked()
+    private async void OnClicked()
     {
-        _spawner.SpawnLoot(_definition);
+        await _spawner.SpawnLootAsync(_definition.AddressableKey);
     }
 }

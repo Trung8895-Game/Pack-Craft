@@ -152,39 +152,42 @@ public class InventoryGridUI : MonoBehaviour
 
         var shape = item.GetCurrentShape();
 
-        foreach (var offset1 in shape)
+        foreach (var offset in shape)
         {
-            Vector2Int pos1 = origin + offset1;
+            Vector2Int pos = origin + offset;
 
-            if (!_inventoryGrid.IsInsideBounds(pos1))
+            if (!_inventoryGrid.IsInsideBounds(pos))
                 continue;
 
             if (valid)
             {
-                _cellViews[pos1.x, pos1.y].SetValid();
+                _cellViews[pos.x, pos.y].SetValid();
             }
             else
             {
+                
+
                 Vector2Int gridPos = dragController.GetCurrentGridPosition();
                 ItemInstance targetItem = InventoryGrid.GetItemAt(gridPos);
                 var result= craftController._craftingService.TryCraft(item,targetItem);
                         
+                    
+                               
+                if(result!=null)
+                {
                     foreach (var occupiedCell in targetItem.OccupiedCells)
                     {
-                               
-                        if(result!=null)
-                        {
                        
-                            _cellViews[occupiedCell.x, occupiedCell.y].SetCrafting();
+                        _cellViews[occupiedCell.x, occupiedCell.y].SetCrafting();
                                 
-                        }
-                        else
-                        {
-                            _cellViews[occupiedCell.x, occupiedCell.y].SetInvalid();
-                        }
-                            
-                            
                     }
+                        
+                }
+                else
+                {
+                    _cellViews[pos.x, pos.y].SetInvalid();
+                }
+                
                   
                 
             }

@@ -10,7 +10,12 @@ public class CraftingService
     }
 
     public ItemDefinition TryCraft(ItemInstance itemA, ItemInstance itemB)
-{
+    {   
+        if(itemA==null||itemB==null)
+        {
+            return null;
+        }
+
     Debug.Log("Database: " + _database);
     if (_database == null)
         {

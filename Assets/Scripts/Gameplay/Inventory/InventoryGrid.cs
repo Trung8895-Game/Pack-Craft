@@ -116,6 +116,29 @@ public bool CanPlaceItem(
     return true;
 }
 
+public bool CanPlaceCraftedItem(ItemInstance targetItem,
+    ItemInstance Crafteditem,Vector2Int origin)
+{
+    foreach (var offset in Crafteditem.GetCurrentShape())
+    {
+        Vector2Int pos = origin + offset;
+
+        if (!IsInsideBounds(pos))
+        {
+            return false;
+        }
+
+        ItemInstance existing = GetItemAt(pos);
+
+        if (existing != null && existing != targetItem)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 public bool CanRotateItem(ItemInstance item)
 {
     RotationState oldRotation = item.Rotation;

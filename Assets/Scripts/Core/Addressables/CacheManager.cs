@@ -6,8 +6,6 @@ public static class CacheManager
     public static async UniTask
         ClearCache()
     {
-        await Addressables
-            .CleanBundleCache()
-            .ToUniTask();
+        await Addressables.CleanBundleCache().ToUniTask();
     }
 }

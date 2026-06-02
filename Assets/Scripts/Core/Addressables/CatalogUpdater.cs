@@ -7,13 +7,9 @@ public static class CatalogUpdater
     public static async UniTask<bool>
         CheckForUpdates()
     {
-        var checkHandle =
-            Addressables
-                .CheckForCatalogUpdates();
+        var checkHandle = Addressables.CheckForCatalogUpdates();
 
-        var catalogs =
-            await checkHandle
-                .ToUniTask();
+        var catalogs = await checkHandle.ToUniTask();
 
         if (catalogs == null ||
             catalogs.Count == 0)
@@ -21,13 +17,9 @@ public static class CatalogUpdater
             return false;
         }
 
-        var updateHandle =
-            Addressables
-                .UpdateCatalogs(
-                    catalogs);
+        var updateHandle = Addressables.UpdateCatalogs(catalogs);
 
-        await updateHandle
-            .ToUniTask();
+        await updateHandle.ToUniTask();
 
         return true;
     }

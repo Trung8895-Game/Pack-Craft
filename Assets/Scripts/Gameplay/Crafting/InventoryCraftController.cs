@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class InventoryCraftController
-    : MonoBehaviour
+public class InventoryCraftController : MonoBehaviour
 {
     
     private CraftingDatabase database;

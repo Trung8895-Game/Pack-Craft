@@ -10,8 +10,7 @@ public class AddressableTest : MonoBehaviour
             Addressables.LoadAssetAsync<ItemDefinition>(
                 "Wood");
 
-        ItemDefinition item =
-            await handle.ToUniTask();
+        ItemDefinition item = await handle.ToUniTask();
 
         Debug.Log(item.name);
     }

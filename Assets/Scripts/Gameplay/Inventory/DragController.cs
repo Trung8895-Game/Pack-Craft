@@ -86,9 +86,13 @@ public class DragController : MonoBehaviour
         }
         else
         {
+            
             ItemInstance targetItem = gridUI.InventoryGrid.GetItemAt(gridPos);
             if (targetItem != null && targetItem != _draggingItem)
             {
+
+                Debug.Log("DraggingItem: " + _draggingItem);
+                Debug.Log("TargetItem: " + targetItem);
                 bool crafted =craftController.TryCraft(_draggingItem,targetItem);
 
                 if (crafted)
@@ -97,7 +101,7 @@ public class DragController : MonoBehaviour
                 }
             }
             gridUI.InventoryGrid.PlaceItem(_draggingItem,_originalPosition);
-
+            
             //craftController.CheckCrafting();
         }
 

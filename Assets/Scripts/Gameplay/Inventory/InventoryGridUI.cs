@@ -151,6 +151,9 @@ public class InventoryGridUI : MonoBehaviour
 
         Vector2Int[] shape = item.GetCurrentShape();
         ItemDefinition result=null;
+        ItemInstance targetItem = null;
+        Vector2Int[] currentShape=shape;
+        Vector2Int currentOrigin=origin;
         //Vector2Int gridPos = dragController.GetCurrentGridPosition();
         //ItemInstance targetItem = InventoryGrid.GetItemAt(gridPos);
         //var result= craftController._craftingService.TryCraft(item,targetItem);
@@ -163,46 +166,52 @@ public class InventoryGridUI : MonoBehaviour
            
             if(_inventoryGrid.IsOccupied(pos))
             {
-                ItemInstance targetItem = InventoryGrid.GetItemAt(pos);
+                targetItem = InventoryGrid.GetItemAt(pos);
                 result = craftController._craftingService.TryCraft(item,targetItem);
             }
             
         }
-
-        foreach (var offset in shape)
+        if(targetItem!=null)
         {
-            Vector2Int pos = origin + offset;
+            Vector2Int[] targetShape = targetItem.GetCurrentShape();
+            if(shape.Length<targetShape.Length)
+            {
+                currentShape=targetShape;
+                currentOrigin=targetItem.Origin;
+            }
+              
+        }       
+        
+        foreach (var offset in currentShape)
+            {
+                Vector2Int pos = currentOrigin + offset;
            
 
-            if (!_inventoryGrid.IsInsideBounds(pos))
-                continue;
+                if (!_inventoryGrid.IsInsideBounds(pos))
+                    continue;
 
-            if (valid)
-            {
-                _cellViews[pos.x, pos.y].SetValid();
-            }
-            else
-            {
-                              
-                if(result!=null)
+                if (valid)
                 {
-                     _cellViews[pos.x, pos.y].SetCrafting();
-                        
+                    _cellViews[pos.x, pos.y].SetValid();
                 }
                 else
                 {
-                    _cellViews[pos.x, pos.y].SetInvalid();
-                }
+                              
+                    if(result!=null)
+                    {
+                        _cellViews[pos.x, pos.y].SetCrafting();
+                        
+                    }
+                    else
+                    {
+                        _cellViews[pos.x, pos.y].SetInvalid();
+                    }
                 
                   
                 
+                }
             }
-        }
-       
 
-        
-               
-                
     }
     public void RefreshGridVisual()
     {

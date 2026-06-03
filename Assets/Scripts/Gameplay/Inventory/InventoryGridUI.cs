@@ -149,11 +149,30 @@ public class InventoryGridUI : MonoBehaviour
     {
         ClearHighlights();
 
-        var shape = item.GetCurrentShape();
+        Vector2Int[] shape = item.GetCurrentShape();
+        ItemDefinition result=null;
+        //Vector2Int gridPos = dragController.GetCurrentGridPosition();
+        //ItemInstance targetItem = InventoryGrid.GetItemAt(gridPos);
+        //var result= craftController._craftingService.TryCraft(item,targetItem);
+
+         foreach (var offset in shape)
+        {
+            Vector2Int pos = origin + offset;
+            if (!_inventoryGrid.IsInsideBounds(pos))
+                continue;
+           
+            if(_inventoryGrid.IsOccupied(pos))
+            {
+                ItemInstance targetItem = InventoryGrid.GetItemAt(pos);
+                result = craftController._craftingService.TryCraft(item,targetItem);
+            }
+            
+        }
 
         foreach (var offset in shape)
         {
             Vector2Int pos = origin + offset;
+           
 
             if (!_inventoryGrid.IsInsideBounds(pos))
                 continue;
@@ -164,22 +183,10 @@ public class InventoryGridUI : MonoBehaviour
             }
             else
             {
-                
-
-                Vector2Int gridPos = dragController.GetCurrentGridPosition();
-                ItemInstance targetItem = InventoryGrid.GetItemAt(gridPos);
-                var result= craftController._craftingService.TryCraft(item,targetItem);
-                        
-                    
-                               
+                              
                 if(result!=null)
                 {
-                    foreach (var occupiedCell in targetItem.OccupiedCells)
-                    {
-                       
-                        _cellViews[occupiedCell.x, occupiedCell.y].SetCrafting();
-                                
-                    }
+                     _cellViews[pos.x, pos.y].SetCrafting();
                         
                 }
                 else

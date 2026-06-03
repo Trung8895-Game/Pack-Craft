@@ -87,19 +87,35 @@ public class DragController : MonoBehaviour
         else
         {
             
-            ItemInstance targetItem = gridUI.InventoryGrid.GetItemAt(gridPos);
-            if (targetItem != null && targetItem != _draggingItem)
+            //ItemInstance targetItem = gridUI.InventoryGrid.GetItemAt(gridPos);
+            ItemInstance targetItem=null;
+            Vector2Int[] shape=_draggingItem.GetCurrentShape();
+            foreach (var offset in shape)
             {
-
-                Debug.Log("DraggingItem: " + _draggingItem);
-                Debug.Log("TargetItem: " + targetItem);
-                bool crafted =craftController.TryCraft(_draggingItem,targetItem);
-
-                if (crafted)
+                Vector2Int pos = gridPos + offset;
+                if (!gridUI.InventoryGrid.IsInsideBounds(pos))
+                    continue;
+           
+                if(gridUI.InventoryGrid.IsOccupied(pos))
                 {
-                    return;
+                    targetItem = gridUI.InventoryGrid.GetItemAt(pos);
+                
+                    if (targetItem != null && targetItem != _draggingItem)
+                    {
+
+                        Debug.Log("DraggingItem: " + _draggingItem);
+                        Debug.Log("TargetItem: " + targetItem);
+                        bool crafted =craftController.TryCraft(_draggingItem,targetItem);
+
+                        if (crafted)
+                        {
+                            return;
+                        }
+                    }
                 }
+            
             }
+            
             gridUI.InventoryGrid.PlaceItem(_draggingItem,_originalPosition);
             
             //craftController.CheckCrafting();
